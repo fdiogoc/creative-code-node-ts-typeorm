@@ -25,7 +25,7 @@ export class Usuario extends BaseEntity {
   peso: number;
 
   @Column()
-  telefone: number;
+  telefone: string;
 
   @Column({
     type: 'enum',
