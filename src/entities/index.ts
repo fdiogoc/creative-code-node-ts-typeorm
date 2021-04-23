@@ -1,3 +1,2 @@
-import { Endereco } from './Endereco';
-import { Usuario } from './Usuario';
-export { Endereco, Usuario };
+export * from './Endereco';
+export * from './Usuario';

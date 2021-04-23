@@ -1,6 +1,5 @@
-import { Etnia } from 'src/entities/Usuario';
+import { Etnia, Usuario } from '../entities';
 import { getRepository } from 'typeorm';
-import { Usuario } from '../entities';
 export interface IUsuarioPayload {
   id: number;
   senha: string;
