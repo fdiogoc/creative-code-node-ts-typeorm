@@ -10,7 +10,7 @@ export interface IUsuarioPayload {
   etnia: Etnia;
 }
 
-export const getUsers = async (): Promise<Array<Usuario>> => {
+export const getUsers = async (): Promise<Array<IUsuarioPayload>> => {
   const userRepository = getRepository(Usuario);
   return userRepository.find();
 };

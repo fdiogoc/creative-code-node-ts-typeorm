@@ -1,26 +1,27 @@
 import { Get, Route, Post, Body, Path } from 'tsoa';
-import { Usuario } from '../entities';
 import {
   getUsers,
   createUser,
   IUsuarioPayload,
   getUser,
-} from '../repositories/usuario';
+} from '../repositories/user.repository';
 
 @Route('users')
 export default class UserController {
   @Get('/')
-  public async getUsers(): Promise<Array<Usuario>> {
+  public async getUsers(): Promise<Array<IUsuarioPayload>> {
     return getUsers();
   }
 
   @Post('/')
-  public async createUser(@Body() body: IUsuarioPayload): Promise<Usuario> {
+  public async createUser(
+    @Body() body: IUsuarioPayload,
+  ): Promise<IUsuarioPayload> {
     return createUser(body);
   }
 
   @Get('/:id')
-  public async getUser(@Path() id: string): Promise<Usuario | null> {
+  public async getUser(@Path() id: string): Promise<IUsuarioPayload | null> {
     return getUser(Number(id));
   }
 }
