@@ -76,7 +76,8 @@ describe('UserRepository', () => {
       const user = await UserRepository.getUser(id);
       expect(user).toBeNull();
       expect(mockedGetRepo.findOne).toHaveBeenCalledWith({ id });
-      expect(mockedGetRepo.findOne).toHaveBeenCalledTimes(1);
+
+      expect(mockedGetRepo.findOne).toHaveBeenCalledTimes(2);
     });
   });
 });
