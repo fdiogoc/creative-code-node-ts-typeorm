@@ -1,11 +1,10 @@
-import { Usuario } from '@App/entities';
 import { Session } from 'express-session';
 import { Route, Post, Body } from 'tsoa';
 import {
   register,
   login,
   UserResponse,
-  EmailPasswordInput,
+  IUsuarioPayload,
 } from '../repositories/user.repository';
 import { Request } from 'express';
 
@@ -13,9 +12,9 @@ import { Request } from 'express';
 export default class AuthController {
   @Post('/register')
   public async register(
-    @Body() body: EmailPasswordInput,
+    @Body() body: IUsuarioPayload,
     req: any,
-  ): Promise<Usuario> {
+  ): Promise<UserResponse> {
     return register(body, req);
   }
 

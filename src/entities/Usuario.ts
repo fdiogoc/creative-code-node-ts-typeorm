@@ -1,5 +1,5 @@
 import { IsEmail, Length } from 'class-validator';
-import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 export enum Etnia {
   BRANCO = 'Branco',
@@ -9,7 +9,7 @@ export enum Etnia {
 }
 
 @Entity()
-export class Usuario extends BaseEntity {
+export class Usuario {
   @PrimaryGeneratedColumn()
   id!: number;
 

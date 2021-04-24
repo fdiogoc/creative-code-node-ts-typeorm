@@ -4,13 +4,13 @@ import AuthController from '../controllers/auth.controller';
 
 const router = express.Router();
 
-router.post('/register', async (req, res, next) => {
+router.post('/register', async (req, res, _next) => {
   const controller = new AuthController();
   const response = await controller.register(req.body, req);
   return res.send(response);
 });
 
-router.post('/login', async (req, res, next) => {
+router.post('/login', async (req, res, _next) => {
   const controller = new AuthController();
   const response = await controller.login(
     req.body.email,

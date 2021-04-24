@@ -1,5 +1,5 @@
-import { Etnia, Usuario } from '../entities';
-import { getManager, getRepository } from 'typeorm';
+import { Etnia, Usuario } from '@App/entities/Usuario';
+import { getRepository } from 'typeorm';
 import { Request } from 'express';
 
 import { Session } from 'express-session';
@@ -59,7 +59,7 @@ export const getByEmail = async (email: string): Promise<Usuario | null> => {
 
 export const register = async (
   options: IUsuarioPayload,
-  req: Request,
+  _req: Request,
 ): Promise<UserResponse> => {
   try {
     const userRepository = getRepository(Usuario);

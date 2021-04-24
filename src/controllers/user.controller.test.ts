@@ -5,7 +5,7 @@ import {
   generateUsersData,
   generateUserData,
 } from '../../test/utils/generate';
-import { Usuario } from '../entities';
+import { Usuario } from '../entities/Usuario';
 
 afterEach(() => {
   jest.resetAllMocks();

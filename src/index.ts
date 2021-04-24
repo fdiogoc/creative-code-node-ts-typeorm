@@ -36,7 +36,7 @@ app.use(
 
 app.use(cors());
 
-app.use((req, res, next) => {
+app.use((req, _res, next) => {
   console.log(req.session);
   console.log(req.user);
   next();
@@ -44,11 +44,11 @@ app.use((req, res, next) => {
 
 app.use(router);
 
-app.get('/', (req, res, next) => {
+app.get('/', (_req, res, _next) => {
   res.send('<h1>Home</h1><p>Please <a href="/register">register</a></p>');
 });
 // When you visit http://localhost:3000/login, you will see "Login Page"
-app.get('/login', (req, res, next) => {
+app.get('/login', (_req, res, _next) => {
   const form =
     '<h1>Login Page</h1><form method="POST" action="/login">\
   Enter Username:<br><input type="text" name="username">\

@@ -1,6 +1,5 @@
 import faker from 'faker';
 import { Etnia, Usuario } from '../../src/entities/Usuario';
-import { IUsuarioPayload } from '../../src/repositories/user.repository';
 
 export function generateUserData(overide = {}) {
   return {
