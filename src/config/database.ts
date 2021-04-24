@@ -1,5 +1,6 @@
 import { Usuario, Endereco } from '../entities';
 import { ConnectionOptions } from 'typeorm';
+import { SessionEntity } from 'typeorm-session-store';
 
 const config: ConnectionOptions = {
   type: 'postgres',
@@ -8,8 +9,9 @@ const config: ConnectionOptions = {
   username: process.env.POSTGRES_USER || 'postgres',
   password: process.env.POSTGRES_PASSWORD || 'postgres',
   database: process.env.POSTGRES_DB || 'creativecode',
-  entities: [Usuario, Endereco],
+  entities: [Usuario, Endereco, SessionEntity],
   synchronize: true,
+
   logging: true,
 };
 

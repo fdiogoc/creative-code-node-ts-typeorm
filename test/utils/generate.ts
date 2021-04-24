@@ -1,11 +1,11 @@
 import faker from 'faker';
-import { Etnia } from '../../src/entities/Usuario';
+import { Etnia, Usuario } from '../../src/entities/Usuario';
 import { IUsuarioPayload } from '../../src/repositories/user.repository';
 
 export function generateUserData(overide = {}) {
   return {
     email: faker.internet.email(),
-    senha: faker.internet.password(),
+    password: faker.internet.password(),
     peso: faker.datatype.number(120),
     idade: faker.datatype.number(99),
     telefone: faker.phone.phoneNumber(),
@@ -18,7 +18,7 @@ export function generateUserPayload() {
   return {
     id: faker.datatype.number(),
     email: faker.internet.email(),
-    senha: faker.internet.password(),
+    password: faker.internet.password(),
     peso: faker.datatype.number(120),
     idade: faker.datatype.number(99),
     telefone: faker.phone.phoneNumber(),
@@ -32,7 +32,7 @@ export function generateUsersData(n: number = 1, overide = {}) {
       length: n,
     },
     (_, i) => {
-      return generateUserData({ id: i, ...overide }) as IUsuarioPayload;
+      return generateUserData({ id: i, ...overide }) as Usuario;
     },
   );
 }

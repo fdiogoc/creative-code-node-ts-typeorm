@@ -1,3 +1,4 @@
+import { IsEmail, Length } from 'class-validator';
 import { BaseEntity, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 export enum Etnia {
@@ -13,10 +14,12 @@ export class Usuario extends BaseEntity {
   id!: number;
 
   @Column({ unique: true })
+  @IsEmail()
   email!: string;
 
   @Column()
-  senha!: string;
+  @Length(4, 100)
+  password: string;
 
   @Column()
   idade: number;
