@@ -9,7 +9,7 @@ import { Request } from 'express';
 
 export default class AuthController {
   public async register(
-    body: IUsuarioPayload,
+    body: Partial<IUsuarioPayload>,
     req: any,
   ): Promise<UserResponse> {
     return register(body, req);

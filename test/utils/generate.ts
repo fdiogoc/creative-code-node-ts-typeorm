@@ -4,6 +4,7 @@ import { Endereco } from '../../src/entities/Endereco';
 
 export function generateUserData(overide = {}) {
   return {
+    id: 0,
     email: faker.internet.email(),
     password: faker.internet.password(),
     peso: faker.datatype.number(120),

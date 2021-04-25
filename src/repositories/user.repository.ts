@@ -58,14 +58,14 @@ export const getByEmail = async (email: string): Promise<Usuario | null> => {
 };
 
 export const register = async (
-  options: IUsuarioPayload,
+  options: Partial<IUsuarioPayload>,
   req: Request & { session: Session & { userId?: number } },
 ): Promise<UserResponse> => {
   try {
     const userRepository = getRepository(Usuario);
     const user = userRepository.create({ ...options });
 
-    options.password = await argon2.hash(options.password);
+    options.password = await argon2.hash(options.password!);
     const errors = await validate(user);
     if (errors.length > 0) {
       console.log('validation failed. errors: ', errors);

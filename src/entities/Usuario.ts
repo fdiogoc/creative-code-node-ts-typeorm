@@ -21,18 +21,19 @@ export class Usuario {
   @Length(4, 100)
   password: string;
 
-  @Column()
+  @Column({ nullable: true })
   idade: number;
 
-  @Column()
+  @Column({ nullable: true })
   peso: number;
 
-  @Column()
+  @Column({ nullable: true })
   telefone: string;
 
   @Column({
     type: 'enum',
     enum: Etnia,
+    nullable: true,
   })
   etnia: Etnia;
 }
