@@ -20,6 +20,11 @@ router.post('/login', async (req, res, _next) => {
   return res.send(response);
 });
 
+router.post('/logout', async (req, res, _next) => {
+  const controller = new AuthController();
+  const response = await controller.logout(req);
+  return res.send(response);
+});
 //Change my password
 // router.post('/change-password', [checkJwt], AuthController.changePassword);
 

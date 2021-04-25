@@ -1,6 +1,6 @@
-import { Etnia, Usuario } from '@App/entities/Usuario';
+import { Etnia, Usuario } from '../entities/Usuario';
 import { getRepository } from 'typeorm';
-import { Request } from 'express';
+import { Request, Response } from 'express';
 
 import { Session } from 'express-session';
 import * as argon2 from 'argon2';
@@ -59,12 +59,12 @@ export const getByEmail = async (email: string): Promise<Usuario | null> => {
 
 export const register = async (
   options: IUsuarioPayload,
-  _req: Request,
+  req: Request & { session: Session & { userId?: number } },
 ): Promise<UserResponse> => {
   try {
     const userRepository = getRepository(Usuario);
-    let user = new Usuario();
-    user.email = options.email;
+    const user = userRepository.create({ ...options });
+
     options.password = await argon2.hash(options.password);
     const errors = await validate(user);
     if (errors.length > 0) {
@@ -74,11 +74,11 @@ export const register = async (
         errors,
       };
     } else {
-      user = await userRepository.save({
-        ...options,
-      });
+      const results = await userRepository.save(user);
+      console.log(req.session);
+      req.session.userId = user.id;
       return {
-        user,
+        user: results,
       };
     }
   } catch (error) {
@@ -105,20 +105,41 @@ export const login = async (
       ],
     };
   }
-  const valid = await argon2.verify(user.password, password);
-  if (!valid) {
-    return {
-      errors: [
-        {
-          field: 'password',
-          message: 'incorrect password',
-        },
-      ],
-    };
+
+  try {
+    if (await argon2.verify(user.password, password)) {
+      req.session.userId = user.id;
+    } else {
+      return {
+        errors: [
+          {
+            field: 'password',
+            message: 'incorrect password',
+          },
+        ],
+      };
+    }
+  } catch (err) {
+    // internal failure
   }
-  req.session.userId = user.id;
 
   return {
     user,
   };
+};
+
+export const logout = async (
+  req: Request & { session: Session & { userId?: number } },
+  res: Response,
+): Promise<boolean> => {
+  return new Promise((resolve) =>
+    req.session.destroy((err) => {
+      res.clearCookie('qid');
+      if (err) {
+        resolve(false);
+        return;
+      }
+      resolve(true);
+    }),
+  );
 };

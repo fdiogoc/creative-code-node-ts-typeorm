@@ -1,4 +1,5 @@
-import { Usuario, Endereco } from '../entities';
+import { Usuario } from '../entities/Usuario';
+import { Endereco } from '../entities/Endereco';
 import { ConnectionOptions } from 'typeorm';
 import { SessionEntity } from 'typeorm-session-store';
 

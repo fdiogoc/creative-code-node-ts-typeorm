@@ -1,4 +1,4 @@
-import { Usuario } from '@App/entities';
+import { Usuario } from '../entities/Usuario';
 import { Get, Route, Post, Body, Path } from 'tsoa';
 import {
   getUsers,

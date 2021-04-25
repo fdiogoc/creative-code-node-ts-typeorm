@@ -11,7 +11,7 @@ export class Endereco {
   @Column()
   numero!: number;
 
-  @Column()
+  @Column({ nullable: true })
   complemento: string;
 
   @Column()
@@ -20,6 +20,6 @@ export class Endereco {
   @Column()
   cidade: string;
 
-  @Column()
+  @Column({ nullable: true })
   estado: string;
 }

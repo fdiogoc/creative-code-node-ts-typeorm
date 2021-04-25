@@ -26,4 +26,11 @@ export default class AuthController {
   ): Promise<UserResponse> {
     return login(email, password, req);
   }
+
+  @Post('/logout')
+  public async logout(
+    req: Request & { session: Session & { userId?: number } },
+  ): Promise<UserResponse> {
+    return this.logout(req);
+  }
 }
