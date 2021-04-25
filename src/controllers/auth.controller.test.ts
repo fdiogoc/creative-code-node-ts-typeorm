@@ -4,9 +4,14 @@ import {
   generateUserData,
   generateUserPayload,
 } from '../../test/utils/generate';
-import { getMockReq } from '@jest-mock/express';
+import { getMockReq, getMockRes } from '@jest-mock/express';
 afterEach(() => {
   jest.resetAllMocks();
+});
+const { res, mockClear } = getMockRes();
+
+beforeEach(() => {
+  mockClear();
 });
 
 describe('AuthController', () => {
@@ -40,6 +45,31 @@ describe('AuthController', () => {
       const id = 1;
       const userData = generateUserData({ id });
       const userResponseMock: UserRepository.UserResponse = {
+        errors: [
+          {
+            field: 'email',
+            message: 'Email não encontrado',
+          },
+        ],
+      };
+      const req = getMockReq();
+      const spy = jest
+        .spyOn(UserRepository, 'login')
+        .mockResolvedValueOnce(userResponseMock);
+      const controller = new AuthController();
+      const userResponse = await controller.login(
+        userData.email,
+        userData.password,
+        req,
+      );
+
+      expect(userResponse.errors).toEqual(userResponseMock.errors);
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+    test('should login', async () => {
+      const id = 1;
+      const userData = generateUserData({ id });
+      const userResponseMock: UserRepository.UserResponse = {
         user: userData,
       };
       const req = getMockReq();
@@ -52,9 +82,22 @@ describe('AuthController', () => {
         userData.password,
         req,
       );
-      console.log(userResponse.errors);
-      expect(userResponse.errors).toEqual(userResponse.errors);
 
+      expect(userResponse.user).toEqual(userData);
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+
+    test('should logout', async () => {
+      // const id = 1;
+      // const userData = generateUserData({ id });
+      const req = getMockReq();
+      const spy = jest
+        .spyOn(UserRepository, 'logout')
+        .mockResolvedValueOnce(false);
+      const controller = new AuthController();
+      const userResponse = await controller.logout(req, res);
+
+      expect(userResponse).toEqual(false);
       expect(spy).toHaveBeenCalledTimes(1);
     });
   });

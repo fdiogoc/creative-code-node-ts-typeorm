@@ -2,10 +2,11 @@ import { Session } from 'express-session';
 import {
   register,
   login,
+  logout,
   UserResponse,
   IUsuarioPayload,
 } from '../repositories/user.repository';
-import { Request } from 'express';
+import { Request, Response } from 'express';
 
 export default class AuthController {
   public async register(
@@ -25,7 +26,8 @@ export default class AuthController {
 
   public async logout(
     req: Request & { session: Session & { userId?: number } },
-  ): Promise<UserResponse> {
-    return this.logout(req);
+    res: Response,
+  ): Promise<boolean> {
+    return logout(req, res);
   }
 }
