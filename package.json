@@ -8,9 +8,7 @@
     "start": "node build/index.js",
     "build": "tsc",
     "dev": "nodemon dist/index.js",
-    "test": "jest",
-    "test:coverage": "npm test -- --coverage",
-    "test:badges": "npm run test:coverage  && jest-coverage-badges"
+    "test": "jest"
   },
   "jest": {
     "coverageReporters": [

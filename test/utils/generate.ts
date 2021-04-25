@@ -1,5 +1,6 @@
 import faker from 'faker';
 import { Etnia, Usuario } from '../../src/entities/Usuario';
+import { Endereco } from '../../src/entities/Endereco';
 
 export function generateUserData(overide = {}) {
   return {
@@ -32,6 +33,41 @@ export function generateUsersData(n: number = 1, overide = {}) {
     },
     (_, i) => {
       return generateUserData({ id: i, ...overide }) as Usuario;
+    },
+  );
+}
+
+export function generateAddressData(overide = {}) {
+  return {
+    endereco: faker.address.streetName(),
+    numero: faker.datatype.number(120),
+    cep: faker.datatype.number(12220),
+    cidade: faker.address.city(),
+    estado: faker.address.stateAbbr(),
+    complemento: faker.address.direction(),
+    ...overide,
+  };
+}
+
+export function generateAddressPayload() {
+  return {
+    id: faker.datatype.number(),
+    endereco: faker.address.streetName(),
+    numero: faker.datatype.number(120),
+    cep: faker.datatype.number(12220),
+    cidade: faker.address.city(),
+    estado: faker.address.stateAbbr(),
+    complemento: faker.address.direction(),
+  };
+}
+
+export function generateAdressesData(n: number = 1, overide = {}) {
+  return Array.from(
+    {
+      length: n,
+    },
+    (_, i) => {
+      return generateAddressData({ id: i, ...overide }) as Endereco;
     },
   );
 }
