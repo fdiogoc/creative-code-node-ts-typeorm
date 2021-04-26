@@ -23,23 +23,6 @@ export async function createServer(): Promise<Application> {
 
   app.use(cors());
 
-  app.use(
-    (
-      err: any,
-      _req: express.Request,
-      res: express.Response,
-      _next: express.NextFunction,
-    ) => {
-      res.status(err.status).json({
-        error: {
-          type: 'request_validation',
-          message: err.message,
-          errors: err.errors,
-        },
-      });
-    },
-  );
-
   app.use(router);
   return app;
 }

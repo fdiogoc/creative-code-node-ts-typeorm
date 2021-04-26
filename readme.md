@@ -4,20 +4,13 @@
 
 - session
 - typorm
-- docker bd
+- docker db
 - postgres
 
 DEV
-Subir o banco:
 
 - docker compose up
-
-  Compilar TS para JS:
-
 - npm run watch
-
-  Subir servidor:
-
 - npn run dev
 
 Models:
@@ -26,17 +19,14 @@ Models:
 • ~~Endereços o Endereço o Numero o Complemento o CEP o Cidade o Estado~~
 
 Serviços:
-~~• Crud User~~
-~~• Crud Endereços~~
+~~• Crud User~~ Falta update/delete
+~~• Crud Endereços~~Falta update/delete
 ~~• Sessão~~
 Requisitos:
 • JWT
 ~~• Postgree~~
-• Testes
+~~• Testes~~
 
 Erros/Pendencia:
-Teste login
-
-Erro de validacao somente retorna 1 campo por vez
-
+teste com dados, no route
 session não esta gravando em banco, perde ao reiniciar aplicacao

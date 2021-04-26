@@ -36,18 +36,6 @@ describe('UserRepository', () => {
       expect(mockedGetRepo.find).toHaveBeenCalledTimes(1);
     });
 
-    describe('addUser', () => {
-      test('should add user to the database', async () => {
-        const payload = generateUserPayload();
-        const userData = generateUserData(payload);
-        mockedGetRepo.save.mockResolvedValue(userData);
-        const user = await UserRepository.createUser(payload);
-        expect(user).toMatchObject(payload);
-        expect(user).toEqual(userData);
-        expect(mockedGetRepo.save).toHaveBeenCalledWith(payload);
-        expect(mockedGetRepo.save).toHaveBeenCalledTimes(1);
-      });
-    });
     describe('CreateUser', () => {
       test('should create user', async () => {
         const payload = generateUserPayload();

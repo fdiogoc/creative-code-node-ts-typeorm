@@ -18,7 +18,7 @@
     ]
   },
   "keywords": [],
-  "author": "",
+  "author": "Diogo Cardoso Fernandes",
   "license": "ISC",
   "devDependencies": {
     "@jest-mock/express": "^1.4.1",
