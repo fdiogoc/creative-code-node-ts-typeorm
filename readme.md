@@ -2,6 +2,23 @@
 
 # Nodejs + Typescript (CRUD + Auth session)
 
+API:
+
+- POST /auth/register
+  POST /auth/login
+  POST /auth/logout
+
+- GET /users
+- GET /users/:id
+- POST /users
+
+Somentete autenticado:
+
+- GET /address
+- GET /address/:id
+- GET /address/byCEP/:id
+- POST /address
+
 - session
 - typorm
 - docker db
