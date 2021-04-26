@@ -20,7 +20,11 @@ Models:
 
 Serviços:
 ~~• Crud User~~ Falta update/delete
+
+
 ~~• Crud Endereços~~Falta update/delete
+
+
 ~~• Sessão~~
 Requisitos:
 • JWT
