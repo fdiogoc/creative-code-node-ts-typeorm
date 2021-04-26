@@ -16,7 +16,6 @@ jest.mock('typeorm');
 const mockedGetRepo = mocked(getRepository(<jest.Mock>{}));
 
 beforeEach(() => {
-  request(app);
   mockedGetRepo.find.mockClear();
   mockedGetRepo.save.mockClear();
   mockedGetRepo.findOne.mockClear();

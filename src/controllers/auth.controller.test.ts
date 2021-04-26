@@ -5,6 +5,9 @@ import {
   generateUserPayload,
 } from '../../test/utils/generate';
 import { getMockReq, getMockRes } from '@jest-mock/express';
+import { Request } from 'express';
+import { Session } from 'express-session';
+
 afterEach(() => {
   jest.resetAllMocks();
 });
@@ -87,10 +90,12 @@ describe('AuthController', () => {
       expect(spy).toHaveBeenCalledTimes(1);
     });
 
-    test('should logout', async () => {
+    test('should not logout', async () => {
+      // como mokar o session? precisa de dentro do req, para o logout funcionar
       // const id = 1;
       // const userData = generateUserData({ id });
       const req = getMockReq();
+
       const spy = jest
         .spyOn(UserRepository, 'logout')
         .mockResolvedValueOnce(false);
@@ -98,6 +103,22 @@ describe('AuthController', () => {
       const userResponse = await controller.logout(req, res);
 
       expect(userResponse).toEqual(false);
+      expect(spy).toHaveBeenCalledTimes(1);
+    });
+    test('should logout', async () => {
+      const id = 1;
+      const req: Request & {
+        session: Session & { userId?: number };
+      } = getMockReq();
+      req.session.userId = id;
+
+      const spy = jest
+        .spyOn(UserRepository, 'logout')
+        .mockResolvedValueOnce(true);
+      const controller = new AuthController();
+      const userResponse = await controller.logout(req, res);
+
+      expect(userResponse).toEqual(true);
       expect(spy).toHaveBeenCalledTimes(1);
     });
   });

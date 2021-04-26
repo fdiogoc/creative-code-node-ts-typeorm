@@ -22,7 +22,7 @@ router.post('/login', async (req, res, _next) => {
 
 router.post('/logout', async (req, res, _next) => {
   const controller = new AuthController();
-  const response = await controller.logout(req);
+  const response = await controller.logout(req, res);
   return res.send(response);
 });
 //Change my password

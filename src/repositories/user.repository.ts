@@ -63,8 +63,16 @@ export const register = async (
 ): Promise<UserResponse> => {
   try {
     const userRepository = getRepository(Usuario);
-    const user = userRepository.create({ ...options });
 
+    // ERRO NO JEST AO TESTAR NAO EXISTE ESTE METODO
+    // const user = userRepository.create({ ...options });
+    let user = new Usuario();
+    user.email = options.email!;
+    user.password = options.password!;
+
+    if (!user) {
+      throw new Error('Erro ao criar usuario');
+    }
     options.password = await argon2.hash(options.password!);
     const errors = await validate(user);
     if (errors.length > 0) {
@@ -75,8 +83,7 @@ export const register = async (
       };
     } else {
       const results = await userRepository.save(user);
-      console.log(req.session);
-      req.session.userId = user.id;
+      req.session.userId = results.id;
       return {
         user: results,
       };
