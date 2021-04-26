@@ -6,7 +6,7 @@ API:
 
 - POST /auth/register
 - POST /auth/login
-  -POST /auth/logout
+- POST /auth/logout
 
 - GET /users
 - GET /users/:id
