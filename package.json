@@ -54,6 +54,7 @@
     "express-session": "^1.17.1",
     "jest-coverage-badges": "^1.1.2",
     "jsonwebtoken": "^8.5.1",
+    "mock-express": "^1.3.1",
     "mock-session": "^0.0.5",
     "pg": "^8.6.0",
     "reflect-metadata": "^0.1.13",

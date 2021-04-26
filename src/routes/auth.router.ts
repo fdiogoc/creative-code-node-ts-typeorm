@@ -17,7 +17,7 @@ router.post('/login', async (req, res, _next) => {
     req.body.password,
     req,
   );
-  return res.send(response);
+  return res.status(401).send(response);
 });
 
 router.post('/logout', async (req, res, _next) => {

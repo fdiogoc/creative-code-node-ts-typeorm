@@ -1,15 +1,11 @@
 import * as UserRepository from './user.repository';
 import { getRepository } from 'typeorm';
 import { mocked } from 'ts-jest/utils';
-import { Request } from 'express';
 import {
   generateUserData,
   generateUserPayload,
   generateUsersData,
 } from '../../test/utils/generate';
-import { getMockReq } from '@jest-mock/express';
-import { Session } from 'express-session';
-import { app } from '../../test/utils/app';
 import {} from 'supertest';
 jest.mock('typeorm');
 

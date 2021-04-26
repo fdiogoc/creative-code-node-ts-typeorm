@@ -5,8 +5,6 @@ import {
   generateUserPayload,
 } from '../../test/utils/generate';
 import { getMockReq, getMockRes } from '@jest-mock/express';
-import { Request } from 'express';
-import { Session } from 'express-session';
 
 afterEach(() => {
   jest.resetAllMocks();
