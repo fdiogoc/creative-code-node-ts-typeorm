@@ -2,7 +2,7 @@ import { createServer } from '../server';
 import { Application } from 'express';
 
 import request from 'supertest';
-import { generateUserPayload } from '../../test/utils/generate';
+import { generateUserData } from '../../test/utils/generate';
 
 jest.mock('typeorm');
 
@@ -12,14 +12,14 @@ beforeAll(async () => {
   server = await createServer();
 });
 
-describe('should register', () => {
-  const payload = generateUserPayload();
-  it('should register', async (done) => {
+describe('should create', () => {
+  const payload = generateUserData();
+  it('should create', async (done) => {
     request(server)
       .post(`/users`)
 
       .expect(200)
-      .send({ payload })
+      .send(payload)
       .end(function (err, _res) {
         if (err) return done(err);
 
